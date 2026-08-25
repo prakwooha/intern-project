@@ -1,0 +1,66 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+require("dotenv").config();
+
+const authRoutes = require("./routes/auth");
+const listRoutes = require("./routes/lists");
+const historyRoutes = require("./routes/history");
+
+const app = express();
+
+
+// ===============================
+// MIDDLEWARE
+// ===============================
+
+app.use(cors());
+app.use(express.json());
+
+
+// ===============================
+// ROUTES
+// ===============================
+
+app.use("/api/auth", authRoutes);
+app.use("/api/lists", listRoutes);
+app.use("/api/history", historyRoutes);
+
+// ===============================
+// TEST ROUTE
+// ===============================
+
+app.get("/", (req, res) => {
+    res.send("ShopSmart API is working!");
+});
+
+
+// ===============================
+// CONNECT TO MONGODB
+// ===============================
+
+mongoose.connect(process.env.MONGO_URI)
+
+    .then(() => {
+
+        console.log("MongoDB connected");
+
+        // Start server
+        app.listen(5001, () => {
+
+            console.log(
+                "Server running on http://localhost:5001"
+            );
+
+        });
+
+    })
+
+    .catch((error) => {
+
+        console.log(
+            "MongoDB connection error:",
+            error
+        );
+
+    }); 
