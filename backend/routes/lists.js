@@ -474,7 +474,7 @@ router.put(
           },
           updateData,
           {
-            new: true,
+            returnDocument: "after",
           }
         );
 

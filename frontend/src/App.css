@@ -1265,3 +1265,357 @@ footer {
   }
 
 }
+
+
+/* =========================================================
+   AUTH PAGES - LOGIN & REGISTER
+========================================================= */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px 20px;
+
+  background:
+    radial-gradient(
+      circle at 10% 15%,
+      rgba(255, 224, 237, 0.75),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(234, 219, 255, 0.8),
+      transparent 32%
+    ),
+    #fffaf7;
+}
+
+
+/* =========================================================
+   AUTH CARD
+========================================================= */
+
+.login-card {
+  width: 100%;
+  max-width: 470px;
+
+  padding: 45px 48px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  border: 1px solid rgba(100, 70, 110, 0.09);
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 25px 60px rgba(76, 46, 95, 0.12),
+    0 5px 20px rgba(76, 46, 95, 0.05);
+
+  backdrop-filter: blur(12px);
+
+  animation: authCardAppear 0.6s ease;
+}
+
+
+/* =========================================================
+   AUTH LOGO
+========================================================= */
+
+.login-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-bottom: 38px;
+
+  color: #55356d;
+
+  font-size: 23px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   SMALL LABEL
+========================================================= */
+
+.login-card .small-label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #76508e;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: 2.5px;
+}
+
+
+/* =========================================================
+   AUTH HEADING
+========================================================= */
+
+.login-card h1 {
+  margin: 0;
+
+  color: #2d2433;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 44px;
+  line-height: 1.08;
+
+  letter-spacing: -1.5px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.login-description {
+  margin: 16px 0 32px;
+
+  color: #827687;
+
+  font-size: 15px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+.login-card label {
+  margin-top: 8px;
+
+  color: #4b4050;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.login-card input {
+  width: 100%;
+
+  padding: 15px 16px;
+
+  border: 1px solid #e6dfe8;
+
+  border-radius: 14px;
+
+  outline: none;
+
+  background: #fffdfc;
+
+  color: #342b38;
+
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.login-card input::placeholder {
+  color: #aaa1ad;
+}
+
+
+.login-card input:hover {
+  border-color: #d4c5da;
+}
+
+
+.login-card input:focus {
+  background: #ffffff;
+
+  border-color: #9a6bb5;
+
+  box-shadow:
+    0 0 0 4px rgba(121, 80, 143, 0.10);
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.login-submit {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 16px 20px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  background: #79508f;
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.login-submit:hover {
+  background: #69427e;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 30px rgba(121, 80, 143, 0.22);
+}
+
+
+.login-submit:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   STATUS MESSAGE
+========================================================= */
+
+.login-message {
+  margin: 18px 0 0;
+
+  padding: 12px 15px;
+
+  border-radius: 12px;
+
+  background: #f7effb;
+
+  color: #76508e;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-button {
+  display: block;
+
+  margin: 25px auto 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #8a7e8d;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.back-button:hover {
+  color: #79508f;
+
+  transform: translateX(-3px);
+}
+
+
+/* =========================================================
+   AUTH ANIMATION
+========================================================= */
+
+@keyframes authCardAppear {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(20px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   AUTH MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+  .login-page {
+    padding: 25px 16px;
+  }
+
+  .login-card {
+    padding: 35px 25px;
+
+    border-radius: 23px;
+  }
+
+  .login-logo {
+    margin-bottom: 30px;
+
+    font-size: 21px;
+  }
+
+  .login-card h1 {
+    font-size: 36px;
+  }
+
+  .login-description {
+    font-size: 14px;
+
+    margin-bottom: 25px;
+  }
+
+}

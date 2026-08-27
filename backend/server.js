@@ -6,6 +6,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/auth");
 const listRoutes = require("./routes/lists");
 const historyRoutes = require("./routes/history");
+const ingredientRoutes = require("./routes/ingredientRoutes");
 
 const app = express();
 
@@ -25,7 +26,8 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/lists", listRoutes);
 app.use("/api/history", historyRoutes);
-
+app.use("/api/ingredients", ingredientRoutes);
+console.log("INGREDIENT ROUTE LOADED");
 // ===============================
 // TEST ROUTE
 // ===============================

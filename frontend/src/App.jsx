@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
+
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
+import Profile from "./components/Profile.jsx";
+
+
+import MealIngredients from "./components/MealIngredients";
 
 // =====================================================
 // DASHBOARD
 // =====================================================
 
-function Dashboard({ onBack }) {
+function Dashboard({ onBack, onProfile }) {
   const [shoppingLists, setShoppingLists] = useState([]);
   const [selectedList, setSelectedList] = useState(null);
+  const [showMealIngredients, setShowMealIngredients] = useState(false);
 
   // CREATE LIST
   const [showCreateList, setShowCreateList] =
@@ -45,7 +51,7 @@ function Dashboard({ onBack }) {
     useState("");
 
   // =====================================================
-  // SHOPSMART CUSTOM MODAL
+  // SHOPSMA
   // =====================================================
 
   const [modal, setModal] = useState({
@@ -1090,12 +1096,11 @@ function Dashboard({ onBack }) {
   return (
     <div className="dashboard-page">
 
+      
       {/* HEADER */}
-
       <header className="dashboard-header">
 
         <div className="logo">
-
           <span className="logo-icon">
             🛒
           </span>
@@ -1103,18 +1108,39 @@ function Dashboard({ onBack }) {
           <span>
             ShopSmart
           </span>
-
         </div>
 
-        <button
-          className="logout-btn"
-          onClick={onBack}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+          }}
         >
-          ← Home
-        </button>
+          <button
+            onClick={onProfile}
+            style={{
+              padding: "10px 18px",
+              borderRadius: "10px",
+              border: "1px solid #d8c9df",
+              background: "white",
+              color: "#80539b",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+          >
+            👤 Profile
+          </button>
+
+          <button
+            className="logout-btn"
+            onClick={onBack}
+          >
+            ← Home
+          </button>
+        </div>
 
       </header>
-
       <main className="dashboard-content">
 
         {/* WELCOME */}
@@ -1125,7 +1151,7 @@ function Dashboard({ onBack }) {
             WELCOME BACK ✨
           </p>
 
-          <h1>
+          <h1 style= {{color: "#1f1425", }}>
             Let's make your{" "}
             <span>
               shopping smarter.
@@ -1296,6 +1322,77 @@ function Dashboard({ onBack }) {
 
         {/* MAIN DASHBOARD */}
 
+         <div
+          style={{
+            marginBottom: "30px",
+            padding: "25px",
+            background: "#f8f1fb",
+            borderRadius: "20px",
+            border: "1px solid #eadcf0",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "15px",
+              flexWrap: "wrap",
+            }}
+          >
+            <div>
+              <p className="small-label">
+                SMART MEAL PLANNER 🍳
+              </p>
+
+              <h2
+                style={{
+                  margin: "5px 0",
+                  color: "#1f1425",
+                }}
+              >
+                Need ingredients for a meal?
+              </h2>
+
+              <p
+                style={{
+                  margin: 0,
+                  color: "#8a7d8e",
+                }}
+              >
+                Find meal ingredients and add them
+                to your shopping list.
+              </p>
+            </div>
+
+            <button
+              onClick={() =>
+                setShowMealIngredients(
+                  !showMealIngredients
+                )
+              }
+              className="new-list-button"
+              style={{
+                padding: "12px 20px",
+              }}
+            >
+              {showMealIngredients
+                ? "Hide Meal Planner"
+                : "🍽️ Add Meal Ingredients"}
+            </button>
+          </div>
+
+          {showMealIngredients && (
+            <div
+              style={{
+                marginTop: "25px",
+              }}
+            >
+             <MealIngredients selectedList={selectedList} onItemAdded={fetchShoppingLists} />
+            </div>
+          )}
+        </div>
+
         <div className="dashboard-grid">
 
           {/* LIST CARD */}
@@ -1309,8 +1406,13 @@ function Dashboard({ onBack }) {
                 <p className="small-label">
                   YOUR LIST
                 </p>
-
-                <h2>
+                <h2
+                  style={{
+                    color: "#1f1425",
+                    fontWeight: "700",
+                  }}
+                ></h2>
+                <h2 style={{color: "#1f1425"}}>
                   {selectedList?.name ||
                     "No list selected"}
                 </h2>
@@ -1323,6 +1425,7 @@ function Dashboard({ onBack }) {
                       gap: "12px",
                       marginTop:
                         "8px",
+                      color: "#80539b",
                     }}
                   >
 
@@ -1359,7 +1462,8 @@ function Dashboard({ onBack }) {
                         cursor:
                           "pointer",
                         color:
-                          "#80539b",
+                          "#80539b"
+                          ,
                         fontWeight:
                           "600",
                       }}
@@ -1466,28 +1570,35 @@ function Dashboard({ onBack }) {
                       item._id ? (
                         <>
 
-                          <button
-                            onClick={() =>
-                              togglePurchased(
-                                item
-                              )
-                            }
-                            style={{
-                              border:
-                                "none",
-                              background:
-                                "transparent",
-                              cursor:
-                                "pointer",
-                              fontSize:
-                                "20px",
-                            }}
-                          >
-                            {item.purchased
-                              ? "✓"
-                              : "○"}
-                          </button>
-
+                        <button
+                          type="button"
+                          onClick={() => togglePurchased(item)}
+                          style={{
+                            width: "30px",
+                            height: "30px",
+                            minWidth: "30px",
+                            borderRadius: "50%",
+                            border: item.purchased
+                              ? "2px solid #80539b"
+                              : "2px solid #b9a8c2",
+                            background: item.purchased
+                              ? "#80539b"
+                              : "white",
+                            color: item.purchased
+                              ? "white"
+                              : "#80539b",
+                            cursor: "pointer",
+                            fontSize: "18px",
+                            fontWeight: "700",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            padding: "0",
+                            flexShrink: 0,
+                          }}
+                        >
+                          {item.purchased ? "✓" : ""}
+                        </button>
                           <span
                             style={{
                               flex:
@@ -2150,7 +2261,7 @@ function Dashboard({ onBack }) {
             }}
           >
 
-            <h2>
+            <h2 style = {{ color: "black" }}>
               Create New List
             </h2>
 
@@ -2198,6 +2309,8 @@ function Dashboard({ onBack }) {
                     "1px solid #ddd",
                   borderRadius:
                     "10px",
+                  background: "white",
+                  color: "black",
                   fontSize:
                     "16px",
                 }}
@@ -2265,6 +2378,8 @@ function Dashboard({ onBack }) {
                     "16px",
                   background:
                     "white",
+                  color:
+                    "black",
                 }}
               >
 
@@ -2323,6 +2438,8 @@ function Dashboard({ onBack }) {
                     "1px solid #ddd",
                   borderRadius:
                     "10px",
+                  background: "white",
+                  color: "black",
                   fontSize:
                     "16px",
                 }}
@@ -2369,6 +2486,7 @@ function Dashboard({ onBack }) {
                     "10px",
                   background:
                     "white",
+                  color: "black",
                   cursor:
                     "pointer",
                 }}
@@ -2424,7 +2542,7 @@ function Dashboard({ onBack }) {
               }}
             >
 
-              <h2>
+              <h2 style={{ color: "black" }}>
                 Edit Shopping List
               </h2>
 
@@ -2484,6 +2602,8 @@ function Dashboard({ onBack }) {
                       "1px solid #ddd",
                     borderRadius:
                       "10px",
+                    background: "white",
+                    color: "black",
                     fontSize:
                       "16px",
                   }}
@@ -2551,6 +2671,7 @@ function Dashboard({ onBack }) {
                       "16px",
                     background:
                       "white",
+                    color: "black",
                   }}
                 >
 
@@ -2609,6 +2730,8 @@ function Dashboard({ onBack }) {
                       "1px solid #ddd",
                     borderRadius:
                       "10px",
+                    background: "white",
+                    color: "black",
                     fontSize:
                       "16px",
                   }}
@@ -2657,6 +2780,7 @@ function Dashboard({ onBack }) {
                       "10px",
                     background:
                       "white",
+                    color: "black",
                     cursor:
                       "pointer",
                   }}
@@ -2776,6 +2900,10 @@ function Dashboard({ onBack }) {
                       "1px solid #ddd",
                     borderRadius:
                       "10px",
+                    background:
+                      "white",
+                    color: "black",
+
                     fontSize:
                       "16px",
                   }}
@@ -2822,6 +2950,9 @@ function Dashboard({ onBack }) {
                       "1px solid #ddd",
                     borderRadius:
                       "10px",
+                    background:
+                      "white",
+                    color: "black",
                     fontSize:
                       "16px",
                   }}
@@ -2869,23 +3000,28 @@ function Dashboard({ onBack }) {
                       "16px",
                     background:
                       "white",
+                    color: "black",
                   }}
                 >
 
-                  <option value="Other">
-                    Other
-                  </option>
-
-                  <option value="Dairy">
-                    Dairy
+                  <option value="Vegetables">
+                    Vegetables
                   </option>
 
                   <option value="Fruits">
                     Fruits
                   </option>
 
-                  <option value="Vegetables">
-                    Vegetables
+                  <option value="Meat & Seafood">
+                    Meat & Seafood
+                  </option>
+
+                  <option value="Grains & Cereals">
+                    Grains & Cereals
+                  </option>
+
+                  <option value="Dairy">
+                    Dairy
                   </option>
 
                   <option value="Bakery">
@@ -2900,8 +3036,16 @@ function Dashboard({ onBack }) {
                     Beverages
                   </option>
 
+                  <option value="Spices & Condiments">
+                    Spices & Condiments
+                  </option>
+
                   <option value="Household">
                     Household
+                  </option>
+
+                  <option value="Personal Care">
+                    Personal Care
                   </option>
 
                 </select>
@@ -2914,6 +3058,8 @@ function Dashboard({ onBack }) {
                       "15px",
                     marginBottom:
                       "7px",
+                    background: "white",
+                    color: "black",
                     fontWeight:
                       "600",
                   }}
@@ -2948,6 +3094,8 @@ function Dashboard({ onBack }) {
                       "1px solid #ddd",
                     borderRadius:
                       "10px",
+                    background: "white",
+                    color: "black",
                     fontSize:
                       "16px",
                   }}
@@ -2996,6 +3144,7 @@ function Dashboard({ onBack }) {
                       "10px",
                     background:
                       "white",
+                    color: "black",
                     cursor:
                       "pointer",
                   }}
@@ -3083,7 +3232,7 @@ function Dashboard({ onBack }) {
             <h2
               style={{
                 margin: "0 0 10px",
-                color: "#33283a",
+                color: "#2f2038",
                 fontSize: "24px",
                 fontWeight: "700",
               }}
@@ -3196,6 +3345,7 @@ function App() {
     setShowDashboard,
   ] = useState(false);
 
+
   const [
     showLogin,
     setShowLogin,
@@ -3205,6 +3355,11 @@ function App() {
     showRegister,
     setShowRegister,
   ] = useState(false);
+
+  const [
+  showProfile,
+  setShowProfile,
+] = useState(false);
 
   // REGISTER
   if (showRegister) {
@@ -3236,16 +3391,42 @@ function App() {
     );
   }
 
-  // DASHBOARD
-  if (showDashboard) {
-    return (
-      <Dashboard
-        onBack={() =>
-          setShowDashboard(false)
-        }
-      />
-    );
-  }
+// PROFILE
+if (showProfile) {
+  return (
+    <Profile
+      onBack={() => {
+        setShowProfile(false);
+        setShowDashboard(true);
+      }}
+      onLogout={() => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        setShowProfile(false);
+        setShowDashboard(false);
+        setShowLogin(true);
+      }}
+    />
+  );
+}
+
+// DASHBOARD
+if (showDashboard) {
+  return (
+    <Dashboard
+      onBack={() =>
+        setShowDashboard(false)
+      }
+      onProfile={() => {
+        setShowDashboard(false);
+        setShowProfile(true);
+      }}
+    />
+  );
+}
+
+
 
   // =====================================================
   // LANDING PAGE
@@ -3253,6 +3434,7 @@ function App() {
 
   return (
     <div className="landing-page">
+      
 
       <nav className="navbar">
 
@@ -3701,3 +3883,4 @@ function App() {
 }
 
 export default App;
+
