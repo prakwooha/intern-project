@@ -27,7 +27,7 @@
 
 ```bash
 git clone <your-repository-url>
-cd ShopSmart
+cd cartiva
 ```
 
 ### 2. Install dependencies
