@@ -39,7 +39,7 @@ function Profile({ onBack, onLogout }) {
 
       try {
         const response = await fetch(
-          "http://localhost:5001/api/lists",
+          `${import.meta.env.VITE_API_URL}/api/lists`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

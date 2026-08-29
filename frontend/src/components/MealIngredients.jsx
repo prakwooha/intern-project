@@ -23,7 +23,7 @@ function MealIngredients({ selectedList, onItemAdded }) {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/ingredients",
+        `${import.meta.env.VITE_API_URL}/api/ingredients`,
         {
           method: "POST",
           headers: {
@@ -84,7 +84,7 @@ function MealIngredients({ selectedList, onItemAdded }) {
 
       // Send ingredient to your MongoDB backend
       const response = await fetch(
-        `http://localhost:5001/api/lists/${selectedList._id}/items`,
+        `${import.meta.env.VITE_API_URL}/api/lists/${selectedList._id}/items`,
         {
           method: "POST",
 
