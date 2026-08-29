@@ -16,7 +16,7 @@ const app = express();
 // ===============================
 
 app.use(cors({
-    origin: "https://shopsmart-manag.netlify.app/"
+    origin: "https://shopsmart-manag.netlify.app",
 }));
 app.use(express.json());
 
