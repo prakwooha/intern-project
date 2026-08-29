@@ -144,7 +144,7 @@ function Dashboard({ onBack, onProfile }) {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/lists",
+        `${import.meta.env.VITE_API_URL}/api/lists`,
         {
           headers: {
             Authorization:
@@ -186,7 +186,7 @@ function Dashboard({ onBack, onProfile }) {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/lists/suggestions",
+        `${import.meta.env.VITE_API_URL}/api/lists/suggestions`,
         {
           headers: {
             Authorization:
@@ -227,7 +227,7 @@ function Dashboard({ onBack, onProfile }) {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/lists/insights",
+        `${import.meta.env.VITE_API_URL}/api/lists/insights`,
         {
           headers: {
             Authorization:
@@ -264,7 +264,7 @@ function Dashboard({ onBack, onProfile }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/lists/${listId}/budget`,
+        `${import.meta.env.VITE_API_URL}/api/lists/${listId}/budget`,
         {
           headers: {
             Authorization:
@@ -335,7 +335,7 @@ function Dashboard({ onBack, onProfile }) {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/lists",
+        `${import.meta.env.VITE_API_URL}/api/lists`,
         {
           method: "POST",
 
@@ -436,7 +436,7 @@ function Dashboard({ onBack, onProfile }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/lists/${selectedList._id}`,
+        `${import.meta.env.VITE_API_URL}/api/lists/${selectedList._id}`,
         {
           method: "PUT",
 
@@ -536,7 +536,7 @@ function Dashboard({ onBack, onProfile }) {
     try {
       const response =
         await fetch(
-          `http://localhost:5001/api/lists/${selectedList._id}`,
+          `${import.meta.env.VITE_API_URL}/api/lists/${selectedList._id}`,
           {
             method: "DELETE",
 
@@ -656,7 +656,7 @@ function Dashboard({ onBack, onProfile }) {
     try {
       const response =
         await fetch(
-          `http://localhost:5001/api/lists/${selectedList._id}/items`,
+          `${import.meta.env.VITE_API_URL}/api/lists/${selectedList._id}/items`,
           {
             method: "POST",
 
@@ -755,7 +755,7 @@ function Dashboard({ onBack, onProfile }) {
     try {
       const response =
         await fetch(
-          `http://localhost:5001/api/lists/${selectedList._id}/items/${itemId}`,
+          `${import.meta.env.VITE_API_URL}/api/lists/${selectedList._id}/items/${itemId}`,
           {
             method: "DELETE",
 
@@ -823,7 +823,7 @@ function Dashboard({ onBack, onProfile }) {
     try {
       const response =
         await fetch(
-          `http://localhost:5001/api/lists/${selectedList._id}/items/${item._id}`,
+          `${import.meta.env.VITE_API_URL}/api/lists/${selectedList._id}/items/${item._id}`,
           {
             method: "PUT",
 
@@ -925,7 +925,7 @@ function Dashboard({ onBack, onProfile }) {
     try {
       const response =
         await fetch(
-          `http://localhost:5001/api/lists/${selectedList._id}/items/${itemId}`,
+          `${import.meta.env.VITE_API_URL}/api/lists/${selectedList._id}/items/${itemId}`,
           {
             method: "PUT",
 
