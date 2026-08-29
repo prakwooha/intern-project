@@ -15,7 +15,9 @@ const app = express();
 // MIDDLEWARE
 // ===============================
 
-app.use(cors());
+app.use(cors({
+    origin: "https://shopsmart-manag.netlify.app/"
+}));
 app.use(express.json());
 
 
